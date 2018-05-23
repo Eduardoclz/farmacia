@@ -19,4 +19,20 @@ class PedidoApiController extends Controller
                 ->get();
         return $pedidos;
     }
+
+    public function getMedicina($idMedicina){
+        $medicina =
+            \App\Comida::where('id','=',$idMedicina)
+                ->get();
+        return $medicina;
+    }
+
+    public function getMarca($idMarca){
+        $medicina =
+            \App\Marca::where('id','=',$idMarca)
+                ->get();
+        return $marca;
+    }
+
+
 }

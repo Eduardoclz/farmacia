@@ -67,7 +67,7 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{route('medicamentos.index')}}">Medicamentos</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{route('usuarios.index')}}">Clientes</a></li>
-                  
+                  <li class="nav-item"> <a class="nav-link" href="{{route('marca.index')}}">Marcas</a></li>
                 </ul>
               </div>
             </li>

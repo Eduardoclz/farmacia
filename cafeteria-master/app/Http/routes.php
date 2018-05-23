@@ -17,6 +17,8 @@ Route::get('/', ["uses" => 'HomeController@index', 'as' => 'index']);
 
 Route::resource('usuarios', 'UsuarioController');
 Route::resource('medicamentos', 'ComidaController');
+Route::resource('marca', 'MarcaController');
+
 Route::resource('pedidos','PedidoController');
 Route::get('/colapedidos',
     ["uses" => 'PedidoController@colaPedidos', 
@@ -33,6 +35,15 @@ Route::get('/api/medicamentos',
 Route::get('/api/pedidos/{idUsuario}',
     ['uses' => 'PedidoApiController@getPedidosUsuario',
     'as' => 'api.pedidos.getpedidosusuario']);
+
+Route::get('/api/medicina/{idMedicina}',
+    ['uses' => 'PedidoApiController@getMedicina',
+    'as' => 'api.pedidos.getmedicina']);
+
+    Route::get('/api/marca/{idMarca}',
+    ['uses' => 'PedidoApiController@getMarca',
+    'as' => 'api.pedidos.getmarca']);
+
 
 Route::post('/api/login',
     ['uses' => 'LoginApiController@login',
