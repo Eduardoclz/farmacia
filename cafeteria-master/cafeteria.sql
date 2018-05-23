@@ -1,33 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: May 23, 2018 at 07:34 AM
--- Server version: 5.6.34-log
--- PHP Version: 7.2.1
+-- Servidor: localhost
+-- Tiempo de generación: 23-05-2018 a las 22:31:31
+-- Versión del servidor: 5.6.38
+-- Versión de PHP: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Database: `cafeteria`
+-- Base de datos: `cafeteria`
 --
-CREATE DATABASE IF NOT EXISTS `cafeteria` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `cafeteria`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comidas`
+-- Estructura de tabla para la tabla `comidas`
 --
 
 CREATE TABLE `comidas` (
@@ -37,16 +27,17 @@ CREATE TABLE `comidas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `comidas`
+-- Volcado de datos para la tabla `comidas`
 --
 
 INSERT INTO `comidas` (`id`, `nombre`, `precio`) VALUES
-(4, 'PARACETAMOL', 1231.00);
+(6, '1231', '9999.99'),
+(10, '123', '3213.00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `elementospedido`
+-- Estructura de tabla para la tabla `elementospedido`
 --
 
 CREATE TABLE `elementospedido` (
@@ -62,7 +53,7 @@ CREATE TABLE `elementospedido` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estadospedido`
+-- Estructura de tabla para la tabla `estadospedido`
 --
 
 CREATE TABLE `estadospedido` (
@@ -71,7 +62,7 @@ CREATE TABLE `estadospedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `estadospedido`
+-- Volcado de datos para la tabla `estadospedido`
 --
 
 INSERT INTO `estadospedido` (`id`, `descripción`) VALUES
@@ -83,7 +74,25 @@ INSERT INTO `estadospedido` (`id`, `descripción`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Estructura de tabla para la tabla `marca`
+--
+
+CREATE TABLE `marca` (
+  `id` int(11) NOT NULL,
+  `marca` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `marca`
+--
+
+INSERT INTO `marca` (`id`, `marca`) VALUES
+(2, 'vayer');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -92,7 +101,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Volcado de datos para la tabla `migrations`
 --
 
 INSERT INTO `migrations` (`migration`, `batch`) VALUES
@@ -102,7 +111,7 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Estructura de tabla para la tabla `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -114,7 +123,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedidos`
+-- Estructura de tabla para la tabla `pedidos`
 --
 
 CREATE TABLE `pedidos` (
@@ -128,7 +137,7 @@ CREATE TABLE `pedidos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipousuario`
+-- Estructura de tabla para la tabla `tipousuario`
 --
 
 CREATE TABLE `tipousuario` (
@@ -137,7 +146,7 @@ CREATE TABLE `tipousuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tipousuario`
+-- Volcado de datos para la tabla `tipousuario`
 --
 
 INSERT INTO `tipousuario` (`id`, `descripcion`) VALUES
@@ -147,7 +156,7 @@ INSERT INTO `tipousuario` (`id`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -162,7 +171,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `idTipoUsuario`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -172,17 +181,17 @@ INSERT INTO `users` (`id`, `idTipoUsuario`, `name`, `email`, `password`, `rememb
 (4, 2, NULL, 'usuario@correo.com', '$2y$10$MfhFvPRe76xiPOCLx9Hbh.jwaOU2rWBWhsoThD1YJLl9dYL/NVy3S', NULL, '2018-04-19 07:46:48', '2018-04-19 07:46:48');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `comidas`
+-- Indices de la tabla `comidas`
 --
 ALTER TABLE `comidas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `elementospedido`
+-- Indices de la tabla `elementospedido`
 --
 ALTER TABLE `elementospedido`
   ADD PRIMARY KEY (`id`),
@@ -190,20 +199,26 @@ ALTER TABLE `elementospedido`
   ADD KEY `idComida` (`idComida`);
 
 --
--- Indexes for table `estadospedido`
+-- Indices de la tabla `estadospedido`
 --
 ALTER TABLE `estadospedido`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Indices de la tabla `marca`
+--
+ALTER TABLE `marca`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`),
   ADD KEY `password_resets_token_index` (`token`);
 
 --
--- Indexes for table `pedidos`
+-- Indices de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
   ADD PRIMARY KEY (`id`),
@@ -211,13 +226,13 @@ ALTER TABLE `pedidos`
   ADD KEY `idUsuario` (`idUsuario`);
 
 --
--- Indexes for table `tipousuario`
+-- Indices de la tabla `tipousuario`
 --
 ALTER TABLE `tipousuario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -225,69 +240,71 @@ ALTER TABLE `users`
   ADD KEY `idTipoUsuario` (`idTipoUsuario`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `comidas`
+-- AUTO_INCREMENT de la tabla `comidas`
 --
 ALTER TABLE `comidas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
--- AUTO_INCREMENT for table `elementospedido`
+-- AUTO_INCREMENT de la tabla `elementospedido`
 --
 ALTER TABLE `elementospedido`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `estadospedido`
+-- AUTO_INCREMENT de la tabla `estadospedido`
 --
 ALTER TABLE `estadospedido`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `pedidos`
+-- AUTO_INCREMENT de la tabla `marca`
+--
+ALTER TABLE `marca`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `tipousuario`
+-- AUTO_INCREMENT de la tabla `tipousuario`
 --
 ALTER TABLE `tipousuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `elementospedido`
+-- Filtros para la tabla `elementospedido`
 --
 ALTER TABLE `elementospedido`
   ADD CONSTRAINT `elementospedido_ibfk_1` FOREIGN KEY (`idComida`) REFERENCES `comidas` (`id`),
   ADD CONSTRAINT `elementospedido_ibfk_2` FOREIGN KEY (`idPedido`) REFERENCES `pedidos` (`id`);
 
 --
--- Constraints for table `pedidos`
+-- Filtros para la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
   ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`idEstadoPedido`) REFERENCES `estadospedido` (`id`),
   ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`idUsuario`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `users`
+-- Filtros para la tabla `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`idTipoUsuario`) REFERENCES `tipousuario` (`id`);
---
--- Database: `test`
---
-CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `test`;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
